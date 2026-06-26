@@ -1,23 +1,31 @@
 backend:
-  name: github
-  repo: MoobeChikanda/5kmvp
+  name: git-gateway
   branch: main
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
 
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "content/posts"
+  - name: "articles"
+    label: "Articles"
+    folder: "src/content/articles"
     create: true
     slug: "{{slug}}"
-
     fields:
       - { label: "Title", name: "title", widget: "string" }
-
       - { label: "Description", name: "description", widget: "text" }
-
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "admin" }
+      - label: "Image"
+        name: "image"
+        widget: "object"
+        fields:
+          - { label: "URL", name: "url", widget: "string" }
+          - { label: "Alt Text", name: "alt", widget: "string" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Reading Time", name: "readingTime", widget: "number", default: 5 }
+      - { label: "Rating", name: "rating", widget: "number", default: 4, min: 1, max: 5 }
       - { label: "Body", name: "body", widget: "markdown" }
