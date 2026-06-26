@@ -1,0 +1,35 @@
+---
+layout: base.njk
+title: Categories
+description: Browse tools by category for solopreneurs.
+permalink: /categories/index.html
+---
+
+<section class="bg-muted/30">
+  <div class="container mx-auto px-4 py-12">
+    <nav class="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+      <a href="/" class="hover:text-foreground">Home</a>
+      <span>/</span>
+      <span class="text-foreground">Categories</span>
+    </nav>
+
+    <h1 class="mb-4 text-4xl font-bold md:text-5xl">Categories</h1>
+    <p class="text-lg text-muted-foreground max-w-2xl">
+      Find the perfect tools for every aspect of your solo business.
+    </p>
+  </div>
+</section>
+
+<section class="container mx-auto px-4 py-12">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {% for category in categories %}
+    <a href="/categories/{{ category.slug }}/" class="group block rounded-xl border bg-card p-6 transition-all hover:shadow-lg hover:border-primary/50">
+      <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg" style="background-color: {{ category.color }}20">
+        <div class="h-3 w-3 rounded-full" style="background-color: {{ category.color }}"></div>
+      </div>
+      <h3 class="mb-2 text-lg font-semibold group-hover:text-primary transition-colors">{{ category.name }}</h3>
+      <p class="text-sm text-muted-foreground line-clamp-2">{{ category.description }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>

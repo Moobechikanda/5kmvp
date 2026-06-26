@@ -1,0 +1,13 @@
+<div class="flex items-start gap-4 py-3">
+  {% if article.data.image %}
+  <img
+    src="{{ article.data.image.url }}"
+    alt="{{ article.data.image.alt }}"
+    class="h-16 w-20 rounded-lg object-cover"
+  >
+  {% endif %}
+  <div>
+    <a href="/articles/{{ article.slug }}/" class="font-medium hover:text-primary">{{ article.data.title }}</a>
+    <p class="text-sm text-muted-foreground">{{ article.data.pubDate | date }}</p>
+  </div>
+</div>

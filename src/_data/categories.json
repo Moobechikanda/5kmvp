@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Productivity",
+    "slug": "productivity",
+    "description": "Maximize your output and minimize distractions with these essential productivity tools for solo founders.",
+    "color": "#10b981"
+  },
+  {
+    "name": "AI Tools",
+    "slug": "ai-tools",
+    "description": "Harness the power of artificial intelligence to automate tasks and boost your productivity.",
+    "color": "#8b5cf6"
+  },
+  {
+    "name": "Automation",
+    "slug": "automation",
+    "description": "Automate repetitive tasks and connect your tools to create seamless workflows.",
+    "color": "#f59e0b"
+  },
+  {
+    "name": "Design",
+    "slug": "design",
+    "description": "Create stunning visuals and professional branding without hiring a designer.",
+    "color": "#ec4899"
+  },
+  {
+    "name": "Finance",
+    "slug": "finance",
+    "description": "Track income, manage expenses, and stay on top of your business finances.",
+    "color": "#14b8a6"
+  },
+  {
+    "name": "Marketing",
+    "slug": "marketing",
+    "description": "Promote your business and reach more customers with these marketing tools.",
+    "color": "#f43f5e"
+  },
+  {
+    "name": "Writing",
+    "slug": "writing",
+    "description": "Improve your writing, catch errors, and create content that converts.",
+    "color": "#3b82f6"
+  }
+]

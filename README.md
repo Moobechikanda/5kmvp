@@ -1,116 +1,156 @@
-# eleventy-base-blog v9
+# Solopreneur Tools - Eleventy Theme
 
-A starter repository showing how to build a blog with the [Eleventy](https://www.11ty.dev/) site generator (using the [v3.0 release](https://github.com/11ty/eleventy/releases/tag/v3.0.0)).
+A beautiful, production-ready Eleventy blog theme for reviewing tools and resources for solopreneurs.
 
-## Getting Started
+## Quick Start
 
-* [Want a more generic/detailed getting started guide?](https://www.11ty.dev/docs/getting-started/)
-
-1. Make a directory and navigate to it:
-
-```
-mkdir my-blog-name
-cd my-blog-name
-```
-
-2. Clone this Repository
-
-```
-git clone https://github.com/11ty/eleventy-base-blog.git .
-```
-
-_Optional:_ Review `eleventy.config.js` and `_data/metadata.js` to configure the site’s options and data.
-
-3. Install dependencies
-
-```
+```bash
+# Install dependencies
 npm install
+
+# Build CSS
+npm run build:css
+
+# Start development server
+npm run dev
 ```
 
-4. Run Eleventy
+The site will be available at `http://localhost:8080`
 
-Generate a production-ready build to the `_site` folder:
-
-```
-npx @11ty/eleventy
-```
-
-Or build and host on a local development server:
+## Project Structure
 
 ```
-npx @11ty/eleventy --serve
+├── src/
+│   ├── _includes/          # Reusable components (header, footer, newsletter)
+│   ├── _layouts/           # Page layouts (base.njk, article.njk)
+│   ├── _data/              # Global data files (categories, authors, site)
+│   ├── content/
+│   │   └── articles/       # Markdown blog posts
+│   ├── assets/
+│   │   └── css/            # Compiled CSS
+│   ├── styles/
+│   │   └── globals.css     # Tailwind CSS source
+│   ├── articles/           # Articles listing page
+│   ├── categories/         # Category dynamic pages
+│   └── tags.njk            # Tag dynamic pages
+├── public/
+│   └── favicon.svg
+├── _site/                  # Built output
+├── eleventy.config.js      # Eleventy configuration
+├── tailwind.config.js      # Tailwind configuration
+└── package.json
 ```
 
-Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the internals.
+## Writing Articles
 
-## Features
+Create a new `.md` file in `src/content/articles/`:
 
-- Using [Eleventy v3](https://github.com/11ty/eleventy/releases/tag/v3.0.0) with zero-JavaScript output.
-	- Content is exclusively pre-rendered (this is a static site).
-	- Can easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
-	- All URLs are decoupled from the content’s location on the file system.
-	- Configure templates via the [Eleventy Data Cascade](https://www.11ty.dev/docs/data-cascade/)
-- **Performance focused**: four-hundos Lighthouse score out of the box!
-	- _0 Cumulative Layout Shift_
-	- _0ms Total Blocking Time_
-- Local development live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
-- Content-driven [navigation menu](https://www.11ty.dev/docs/plugins/navigation/)
-- Fully automated [Image optimization](https://www.11ty.dev/docs/plugins/image/)
-	- Zero-JavaScript output.
-	- Support for modern image formats automatically (e.g. AVIF and WebP)
-	- Processes images on-request during `--serve` for speedy local builds.
-	- Prefers `<img>` markup if possible (single image format) but switches automatically to `<picture>` for multiple image formats.
-	- Automated `<picture>` syntax markup with `srcset` and optional `sizes`
-	- Includes `width`/`height` attributes to avoid [content layout shift](https://web.dev/cls/).
-	- Includes `loading="lazy"` for native lazy loading without JavaScript.
-	- Includes [`decoding="async"`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding)
-	- Images can be co-located with blog post files.
-- Per page CSS bundles [via `eleventy-plugin-bundle`](https://github.com/11ty/eleventy-plugin-bundle).
-- Built-in [syntax highlighter](https://www.11ty.dev/docs/plugins/syntaxhighlight/) (zero-JavaScript output).
-- Draft content: use `draft: true` to mark any template as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds. This is driven by the `addPreprocessor` configuration API in `eleventy.config.js`. Schema validator will show an error if non-boolean value is set in data cascade.
-- Blog Posts
-	- Automated next/previous links
-	- Accessible deep links to headings
-- Generated Pages
-	- Home, Archive, and About pages.
-	- [Atom feed included (with easy one-line swap to use RSS or JSON)](https://www.11ty.dev/docs/plugins/rss/)
-	- `sitemap.xml`
-	- Zero-maintenance tag pages ([View on the Demo](https://eleventy-base-blog.netlify.app/tags/))
-	- Content not found (404) page
+```markdown
+---
+title: "Your Article Title"
+description: "A description between 30-200 characters"
+pubDate: 2024-01-15
+author: "admin"
+image:
+  url: "https://images.pexels.com/..."
+  alt: "Image description"
+category: "productivity"
+tags: ["tag1", "tag2", "tag3"]
+featured: false
+draft: false
+rating: 4.5
+readingTime: 8
+difficulty: "beginner"
+keywords: ["seo", "keywords"]
+tools:
+  - name: "Tool Name"
+    url: "https://example.com"
+    pricing: "freemium"
+faq:
+  - question: "Question?"
+    answer: "Answer."
+pros:
+  - "Pro 1"
+  - "Pro 2"
+cons:
+  - "Con 1"
+layout: article.njk
+permalink: /articles/your-slug/index.html
+---
 
-## Demos
+Your article content here...
 
-- [Netlify](https://eleventy-base-blog.netlify.app/)
-- [Vercel](https://demo-base-blog.11ty.dev/)
-- [Cloudflare Pages](https://eleventy-base-blog-d2a.pages.dev/)
-- [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
+## Heading 2
 
-## Deploy this to your own site
+### Heading 3
 
-Deploy this Eleventy site in just a few clicks on these services:
+- Bullet point
+- Another point
 
-- Read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/) to the web.
-- [Deploy this to **Netlify**](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)
-- [Deploy this to **Vercel**](https://vercel.com/import/project?template=11ty%2Feleventy-base-blog)
-- Look in `.github/workflows/gh-pages.yml.sample` for information on [Deploying to **GitHub Pages**](https://www.11ty.dev/docs/deployment/#deploy-an-eleventy-project-to-git-hub-pages).
-- [Try it out on **Stackblitz**](https://stackblitz.com/github/11ty/eleventy-base-blog)
+**Bold text** and *italic text*.
 
-### Implementation Notes
+| Column 1 | Column 2 |
+|----------|----------|
+| Data     | Data     |
+```
 
-- `content/about/index.md` is an example of a content page.
-- `content/blog/` has the blog posts but really they can live in any directory. They need only the `posts` tag to be included in the blog posts [collection](https://www.11ty.dev/docs/collections/).
-- Use the `eleventyNavigation` key (via the [Eleventy Navigation plugin](https://www.11ty.dev/docs/plugins/navigation/)) in your front matter to add a template to the top level site navigation. This is in use on `content/index.njk` and `content/about/index.md`.
-- Content can be in _any template format_ (blog posts needn’t exclusively be markdown, for example). Configure your project’s supported templates in `eleventy.config.js` -> `templateFormats`.
-- The `public` folder in your input directory will be copied to the output folder (via `addPassthroughCopy` in the `eleventy.config.js` file). This means `./public/css/*` will live at `./_site/css/*` after your build completes.
-- This project uses three [Eleventy Layouts](https://www.11ty.dev/docs/layouts/):
-	- `_includes/layouts/base.njk`: the top level HTML structure
-	- `_includes/layouts/home.njk`: the home page template (wrapped into `base.njk`)
-	- `_includes/layouts/post.njk`: the blog post template (wrapped into `base.njk`)
-- `_includes/postslist.njk` is a Nunjucks include and is a reusable component used to display a list of all the posts. `content/index.njk` has an example of how to use it.
+## Categories
 
-#### Content Security Policy
+Categories are defined in `src/_data/categories.json`. Available categories:
 
-If your site enforces a [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (as public-facing sites should), you have a few choices (pick one):
+- productivity
+- ai-tools
+- automation
+- design
+- finance
+- marketing
+- writing
 
-1. In `base.njk`, remove `<style>{% getBundle "css" %}</style>` and uncomment `<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">`
-2. Configure the server with the CSP directive `style-src: 'unsafe-inline'` (less secure).
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server with hot reload |
+| `npm run build` | Build for production |
+| `npm run build:css` | Compile Tailwind CSS |
+| `npm run clean` | Delete build output |
+
+## Deployment
+
+The built `_site` folder can be deployed to:
+
+- **Vercel**: Push to GitHub, connect repo, done
+- **Netlify**: Push to GitHub, connect repo, done
+- **GitHub Pages**: Push `_site` contents to `gh-pages` branch
+- **Any static host**: Upload `_site` folder
+
+## Customization
+
+### Site Info
+Edit `src/_data/site.json` for site name, URL, description.
+
+### Colors
+Edit CSS variables in `src/styles/globals.css`:
+
+```css
+:root {
+  --primary: 199 89% 48%;  /* Main brand color */
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+}
+```
+
+### Typography
+The theme uses Tailwind's prose classes for article content. Styles are in `globals.css`.
+
+## Running in VS Code
+
+1. Open the project folder in VS Code
+2. Open terminal: `Ctrl+` (backtick)
+3. Run `npm install`
+4. Run `npm run dev`
+5. Click the localhost link in terminal to open in browser
+
+## License
+
+Free to use for personal and commercial projects.
