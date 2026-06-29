@@ -33,8 +33,8 @@ cons:
   - "Not for complex design work"
   - "Stock photos can be overused"
   - "Limited vector editing"
-layout: article.njk
-permalink: /articles/canva-pro-review/index.html
+layout: review.njk
+permalink: /reviews/canva-pro-review/index.html
 ---
 
 # Canva Pro Review: Design Without a Designer in 2024

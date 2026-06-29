@@ -33,8 +33,8 @@ cons:
   - "Can hallucinate facts"
   - "Knowledge cutoff"
   - "Requires prompt engineering skills"
-layout: article.njk
-permalink: /articles/chatgpt-for-solopreneurs/index.html
+layout: guide.njk
+permalink: /guides/chatgpt-for-solopreneurs/index.html
 ---
 
 ChatGPT has fundamentally changed how solopreneurs operate. This AI-powered assistant can handle tasks that previously required hiring specialists—content writing, customer service, market research, and much more.

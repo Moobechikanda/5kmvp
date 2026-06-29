@@ -33,8 +33,8 @@ cons:
   - "Can get expensive at scale"
   - "Task limits on lower tiers"
   - "Complex multi-step zaps require learning"
-layout: article.njk
-permalink: /articles/zapier-guide/index.html
+layout: guide.njk
+permalink: /guides/zapier-guide/index.html
 ---
 
 As a solopreneur, your time is your most valuable asset. Every minute spent on repetitive tasks is a minute taken away from growing your business. This is where **Zapier** comes in—a powerful automation tool that connects your apps and automates workflows without requiring any coding knowledge.

@@ -33,8 +33,8 @@ cons:
   - "Pricey for beginners"
   - "Limited to service businesses"
   - "Learning curve for automation"
-layout: article.njk
-permalink: /articles/honeybook-review/index.html
+layout: review.njk
+permalink: /reviews/honeybook-review/index.html
 ---
 
 # HoneyBook Review: All-in-One Client Management for Freelancers

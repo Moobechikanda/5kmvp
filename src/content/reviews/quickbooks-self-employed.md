@@ -33,8 +33,8 @@ cons:
   - "Limited to sole proprietors"
   - "No payroll"
   - "Basic invoicing only"
-layout: article.njk
-permalink: /articles/quickbooks-self-employed/index.html
+layout: review.njk
+permalink: /reviews/quickbooks-self-employed/index.html
 ---
 
 # QuickBooks Self-Employed Review: Accounting Made Simple

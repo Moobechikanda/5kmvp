@@ -33,8 +33,8 @@ cons:
   - "Premium is $12-30/month"
   - "Can be over-prescriptive"
   - "Doesn't replace human editing"
-layout: article.njk
-permalink: /articles/grammarly-review/index.html
+layout: review.njk
+permalink: /reviews/grammarly-review/index.html
 ---
 
 # Grammarly Review: AI Writing Assistant for Perfect Content

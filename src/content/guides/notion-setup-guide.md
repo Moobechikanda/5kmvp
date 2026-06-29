@@ -33,8 +33,8 @@ cons:
   - "Learning curve"
   - "Mobile app could be faster"
   - "Offline access limited"
-layout: article.njk
-permalink: /articles/notion-setup-guide/index.html
+layout: guide.njk
+permalink: /guides/notion-setup-guide/index.html
 ---
 
 # Notion for Solopreneurs: Build Your Ultimate Business Dashboard

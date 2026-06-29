@@ -33,8 +33,8 @@ cons:
   - "Instagram limitations"
   - "No social listening"
   - "Queue system takes learning"
-layout: article.njk
-permalink: /articles/buffer-review/index.html
+layout: review.njk
+permalink: /reviews/buffer-review/index.html
 ---
 
 # Buffer Review: Social Media Scheduling for Busy Solopreneurs
