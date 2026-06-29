@@ -1,8 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "_site",
-  "framework": null,
-  "rewrites": [
-    { "source": "/admin/(.*)", "destination": "/admin/index.html" }
-  ]
+  "framework": null
 }

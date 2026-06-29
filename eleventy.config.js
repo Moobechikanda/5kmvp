@@ -8,7 +8,6 @@ export default function(eleventyConfig) {
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy('src/assets');
   eleventyConfig.addPassthroughCopy({ 'public': '.' });
-  eleventyConfig.addPassthroughCopy({ 'src/admin': 'admin' });
 
   // Custom Markdown parsing
   let markdownItOptions = { html: true, breaks: true, linkify: true };
