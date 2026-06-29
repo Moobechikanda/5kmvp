@@ -1,0 +1,128 @@
+# Pages CMS configuration for 5kmvp
+# Collections: guides, reviews, comparisons, pages, authors, blog
+# Media uploads go to public/images/uploads
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Optional: choose the branch where content is committed (adjust if needed)
+# backend:
+#   name: git
+#   branch: main
+
+collections:
+  - name: "guides"
+    label: "Guides"
+    folder: "content/guides"
+    create: true
+    slug: "{{slug}}"
+    format: "md"
+    frontmatter_delimiter: "---"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", required: false }
+      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
+      - { name: "category", label: "Category", widget: "string" }
+      - { name: "image", label: "Hero image", widget: "image", required: false }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "tags", label: "Tags", widget: "list", required: false }
+      - { name: "featured", label: "Featured", widget: "boolean", default: false }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - name: "seo"
+        label: "SEO"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "title", label: "SEO Title", widget: "string", required: false }
+          - { name: "description", label: "SEO Description", widget: "text", required: false }
+          - { name: "image", label: "SEO Image", widget: "image", required: false }
+
+  - name: "reviews"
+    label: "Reviews"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    format: "md"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", required: false }
+      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "product", label: "Product", widget: "string" }
+      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
+      - { name: "rating", label: "Rating", widget: "number", min: 0, max: 5, step: 0.5 }
+      - { name: "image", label: "Hero image", widget: "image", required: false }
+      - { name: "description", label: "Short description", widget: "text" }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "tags", label: "Tags", widget: "list", required: false }
+      - { name: "seo", label: "SEO", widget: "object", required: false, fields: [{ name: "title", label: "SEO Title", widget: "string" }, { name: "description", label: "SEO Description", widget: "text" }, { name: "image", label: "SEO Image", widget: "image" }] }
+
+  - name: "comparisons"
+    label: "Comparisons"
+    folder: "content/comparisons"
+    create: true
+    slug: "{{slug}}"
+    format: "md"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string", required: false }
+      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "products", label: "Compared items", widget: "list", field: { name: "name", label: "Name", widget: "string" } }
+      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
+      - { name: "image", label: "Hero image", widget: "image", required: false }
+      - { name: "description", label: "Short description", widget: "text" }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "tags", label: "Tags", widget: "list", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    format: "md"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string" }
+      - { name: "image", label: "Hero image", widget: "image", required: false }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - name: "seo"
+        label: "SEO"
+        widget: "object"
+        required: false
+        fields:
+          - { name: "title", label: "SEO Title", widget: "string", required: false }
+          - { name: "description", label: "SEO Description", widget: "text", required: false }
+
+  - name: "authors"
+    label: "Authors"
+    folder: "content/authors"
+    create: true
+    slug: "{{slug}}"
+    format: "md"
+    fields:
+      - { name: "name", label: "Name", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string" }
+      - { name: "role", label: "Role", widget: "string", required: false }
+      - { name: "bio", label: "Bio", widget: "text", required: false }
+      - { name: "avatar", label: "Avatar", widget: "image", required: false }
+      - { name: "social", label: "Social links", widget: "list", required: false, field: { name: "link", label: "Link", widget: "string" } }
+
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    format: "md"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "slug", label: "Slug", widget: "string" }
+      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
+      - { name: "image", label: "Hero image", widget: "image", required: false }
+      - { name: "description", label: "Description", widget: "text" }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "tags", label: "Tags", widget: "list", required: false }
+
+# Optional: pages index and preview settings (depends on your CMS)
+# preview: true
+# public: true

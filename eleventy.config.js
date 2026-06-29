@@ -13,22 +13,25 @@ export default function(eleventyConfig) {
   let markdownItOptions = { html: true, breaks: true, linkify: true };
   eleventyConfig.setLibrary('md', markdownIt(markdownItOptions));
 
-  // Collections
+  // Collections (aggregate content from multiple content subfolders)
   eleventyConfig.addCollection('articles', function(collectionApi) {
-    return collectionApi.getFilteredByGlob('src/content/articles/*.md')
-      .filter(item => !item.data.draft)
+    const contentPattern = /src[\\/ ]content[\\/](guides|reviews|comparisons|blog)[\\/].*\\.md$/;
+    return collectionApi.getAll()
+      .filter(item => !item.data.draft && item.inputPath && contentPattern.test(item.inputPath))
       .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
   });
 
   eleventyConfig.addCollection('featuredArticles', function(collectionApi) {
-    return collectionApi.getFilteredByGlob('src/content/articles/*.md')
-      .filter(item => item.data.featured && !item.data.draft)
+    const contentPattern = /src[\\/ ]content[\\/](guides|reviews|comparisons|blog)[\\/].*\\.md$/;
+    return collectionApi.getAll()
+      .filter(item => item.data.featured && !item.data.draft && item.inputPath && contentPattern.test(item.inputPath))
       .sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
   });
 
   eleventyConfig.addCollection('allTags', function(collectionApi) {
-    const articles = collectionApi.getFilteredByGlob('src/content/articles/*.md')
-      .filter(item => !item.data.draft);
+    const contentPattern = /src[\\/ ]content[\\/](guides|reviews|comparisons|blog)[\\/].*\\.md$/;
+    const articles = collectionApi.getAll()
+      .filter(item => !item.data.draft && item.inputPath && contentPattern.test(item.inputPath));
     const tags = new Set();
     articles.forEach(article => {
       if (article.data.tags) {
