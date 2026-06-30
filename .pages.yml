@@ -13,7 +13,7 @@ public_folder: "/images/uploads"
 collections:
   - name: "guides"
     label: "Guides"
-    folder: "content/guides"
+    folder: "src/content/guides"
     create: true
     slug: "{{slug}}"
     format: "md"
@@ -21,13 +21,15 @@ collections:
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "slug", label: "Slug", widget: "string", required: false }
-      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "pubDate", label: "Published", widget: "datetime" }
       - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
       - { name: "category", label: "Category", widget: "string" }
       - { name: "image", label: "Hero image", widget: "image", required: false }
       - { name: "description", label: "Description", widget: "text" }
       - { name: "tags", label: "Tags", widget: "list", required: false }
       - { name: "featured", label: "Featured", widget: "boolean", default: false }
+      - { name: "layout", label: "Layout", widget: "hidden", default: "guide.njk" }
+      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/guides/{{slug}}/" }
       - { name: "body", label: "Body", widget: "markdown" }
       - name: "seo"
         label: "SEO"
@@ -40,50 +42,59 @@ collections:
 
   - name: "reviews"
     label: "Reviews"
-    folder: "content/reviews"
+    folder: "src/content/reviews"
     create: true
     slug: "{{slug}}"
     format: "md"
+    frontmatter_delimiter: "---"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "slug", label: "Slug", widget: "string", required: false }
-      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "pubDate", label: "Published", widget: "datetime" }
       - { name: "product", label: "Product", widget: "string" }
       - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
       - { name: "rating", label: "Rating", widget: "number", min: 0, max: 5, step: 0.5 }
       - { name: "image", label: "Hero image", widget: "image", required: false }
       - { name: "description", label: "Short description", widget: "text" }
+      - { name: "layout", label: "Layout", widget: "hidden", default: "review.njk" }
+      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/reviews/{{slug}}/" }
       - { name: "body", label: "Body", widget: "markdown" }
       - { name: "tags", label: "Tags", widget: "list", required: false }
       - { name: "seo", label: "SEO", widget: "object", required: false, fields: [{ name: "title", label: "SEO Title", widget: "string" }, { name: "description", label: "SEO Description", widget: "text" }, { name: "image", label: "SEO Image", widget: "image" }] }
 
   - name: "comparisons"
     label: "Comparisons"
-    folder: "content/comparisons"
+    folder: "src/content/comparisons"
     create: true
     slug: "{{slug}}"
     format: "md"
+    frontmatter_delimiter: "---"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "slug", label: "Slug", widget: "string", required: false }
-      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "pubDate", label: "Published", widget: "datetime" }
       - { name: "products", label: "Compared items", widget: "list", field: { name: "name", label: "Name", widget: "string" } }
       - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
       - { name: "image", label: "Hero image", widget: "image", required: false }
       - { name: "description", label: "Short description", widget: "text" }
+      - { name: "layout", label: "Layout", widget: "hidden", default: "comparison.njk" }
+      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/comparisons/{{slug}}/" }
       - { name: "body", label: "Body", widget: "markdown" }
       - { name: "tags", label: "Tags", widget: "list", required: false }
 
   - name: "pages"
     label: "Pages"
-    folder: "content/pages"
+    folder: "src/content/pages"
     create: true
     slug: "{{slug}}"
     format: "md"
+    frontmatter_delimiter: "---"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "slug", label: "Slug", widget: "string" }
       - { name: "image", label: "Hero image", widget: "image", required: false }
+      - { name: "layout", label: "Layout", widget: "hidden", default: "page.njk" }
+      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/{{slug}}/" }
       - { name: "body", label: "Body", widget: "markdown" }
       - name: "seo"
         label: "SEO"
@@ -95,10 +106,11 @@ collections:
 
   - name: "authors"
     label: "Authors"
-    folder: "content/authors"
+    folder: "src/content/authors"
     create: true
     slug: "{{slug}}"
     format: "md"
+    frontmatter_delimiter: "---"
     fields:
       - { name: "name", label: "Name", widget: "string" }
       - { name: "slug", label: "Slug", widget: "string" }
@@ -106,20 +118,25 @@ collections:
       - { name: "bio", label: "Bio", widget: "text", required: false }
       - { name: "avatar", label: "Avatar", widget: "image", required: false }
       - { name: "social", label: "Social links", widget: "list", required: false, field: { name: "link", label: "Link", widget: "string" } }
+      - { name: "layout", label: "Layout", widget: "hidden", default: "author.njk" }
+      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/authors/{{slug}}/" }
 
   - name: "blog"
     label: "Blog"
-    folder: "content/blog"
+    folder: "src/content/blog"
     create: true
     slug: "{{slug}}"
     format: "md"
+    frontmatter_delimiter: "---"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "slug", label: "Slug", widget: "string" }
-      - { name: "date", label: "Published", widget: "datetime" }
+      - { name: "pubDate", label: "Published", widget: "datetime" }
       - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
       - { name: "image", label: "Hero image", widget: "image", required: false }
       - { name: "description", label: "Description", widget: "text" }
+      - { name: "layout", label: "Layout", widget: "hidden", default: "page.njk" }
+      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/blog/{{slug}}/" }
       - { name: "body", label: "Body", widget: "markdown" }
       - { name: "tags", label: "Tags", widget: "list", required: false }
 
