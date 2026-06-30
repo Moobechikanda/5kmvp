@@ -1,145 +1,114 @@
-# Pages CMS configuration for 5kmvp
-# Collections: guides, reviews, comparisons, pages, authors, blog
-# Media uploads go to public/images/uploads
+media:
+  input: public/images/uploads
+  output: /images/uploads
 
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+content:
+  - name: posts
+    label: Articles
+    type: collection
+    path: content/posts
+    filename: "{primary}.md"
 
-# Optional: choose the branch where content is committed (adjust if needed)
-# backend:
-#   name: git
-#   branch: main
+    view:
+      fields: [title, type, date, draft]
 
-collections:
-  - name: "guides"
-    label: "Guides"
-    folder: "src/content/guides"
-    create: true
-    slug: "{{slug}}"
-    format: "md"
-    frontmatter_delimiter: "---"
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "slug", label: "Slug", widget: "string", required: false }
-      - { name: "pubDate", label: "Published", widget: "datetime" }
-      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
-      - { name: "category", label: "Category", widget: "string" }
-      - { name: "image", label: "Hero image", widget: "image", required: false }
-      - { name: "description", label: "Description", widget: "text" }
-      - { name: "tags", label: "Tags", widget: "list", required: false }
-      - { name: "featured", label: "Featured", widget: "boolean", default: false }
-      - { name: "layout", label: "Layout", widget: "hidden", default: "guide.njk" }
-      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/guides/{{slug}}/" }
-      - { name: "body", label: "Body", widget: "markdown" }
-      - name: "seo"
-        label: "SEO"
-        widget: "object"
-        required: false
-        fields:
-          - { name: "title", label: "SEO Title", widget: "string", required: false }
-          - { name: "description", label: "SEO Description", widget: "text", required: false }
-          - { name: "image", label: "SEO Image", widget: "image", required: false }
+      - name: title
+        label: Title
+        type: text
+        required: true
 
-  - name: "reviews"
-    label: "Reviews"
-    folder: "src/content/reviews"
-    create: true
-    slug: "{{slug}}"
-    format: "md"
-    frontmatter_delimiter: "---"
+      - name: slug
+        label: Slug
+        type: text
+
+      - name: type
+        label: Article Type
+        type: select
+        options:
+          - Guide
+          - Review
+          - Comparison
+          - News
+
+      - name: description
+        label: Meta Description
+        type: textarea
+
+      - name: image
+        label: Featured Image
+        type: image
+
+      - name: author
+        label: Author
+        type: text
+
+      - name: category
+        label: Category
+        type: text
+
+      - name: tags
+        label: Tags
+        type: list
+
+      - name: date
+        label: Published
+        type: date
+
+      - name: updated
+        label: Updated
+        type: date
+
+      - name: draft
+        label: Draft
+        type: boolean
+        default: false
+
+      - name: featured
+        label: Featured
+        type: boolean
+        default: false
+
+      - name: seo_title
+        label: SEO Title
+        type: text
+
+      - name: canonical
+        label: Canonical URL
+        type: text
+
+      - name: body
+        label: Content
+        type: rich-text
+
+  - name: pages
+    label: Pages
+    type: collection
+    path: content/pages
+    filename: "{primary}.md"
+
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "slug", label: "Slug", widget: "string", required: false }
-      - { name: "pubDate", label: "Published", widget: "datetime" }
-      - { name: "product", label: "Product", widget: "string" }
-      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
-      - { name: "rating", label: "Rating", widget: "number", min: 0, max: 5, step: 0.5 }
-      - { name: "image", label: "Hero image", widget: "image", required: false }
-      - { name: "description", label: "Short description", widget: "text" }
-      - { name: "layout", label: "Layout", widget: "hidden", default: "review.njk" }
-      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/reviews/{{slug}}/" }
-      - { name: "body", label: "Body", widget: "markdown" }
-      - { name: "tags", label: "Tags", widget: "list", required: false }
-      - { name: "seo", label: "SEO", widget: "object", required: false, fields: [{ name: "title", label: "SEO Title", widget: "string" }, { name: "description", label: "SEO Description", widget: "text" }, { name: "image", label: "SEO Image", widget: "image" }] }
+      - name: title
+        type: text
 
-  - name: "comparisons"
-    label: "Comparisons"
-    folder: "src/content/comparisons"
-    create: true
-    slug: "{{slug}}"
-    format: "md"
-    frontmatter_delimiter: "---"
+      - name: slug
+        type: text
+
+      - name: body
+        type: rich-text
+
+  - name: authors
+    label: Authors
+    type: collection
+    path: content/authors
+    filename: "{primary}.md"
+
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "slug", label: "Slug", widget: "string", required: false }
-      - { name: "pubDate", label: "Published", widget: "datetime" }
-      - { name: "products", label: "Compared items", widget: "list", field: { name: "name", label: "Name", widget: "string" } }
-      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
-      - { name: "image", label: "Hero image", widget: "image", required: false }
-      - { name: "description", label: "Short description", widget: "text" }
-      - { name: "layout", label: "Layout", widget: "hidden", default: "comparison.njk" }
-      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/comparisons/{{slug}}/" }
-      - { name: "body", label: "Body", widget: "markdown" }
-      - { name: "tags", label: "Tags", widget: "list", required: false }
+      - name: name
+        type: text
 
-  - name: "pages"
-    label: "Pages"
-    folder: "src/content/pages"
-    create: true
-    slug: "{{slug}}"
-    format: "md"
-    frontmatter_delimiter: "---"
-    fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "slug", label: "Slug", widget: "string" }
-      - { name: "image", label: "Hero image", widget: "image", required: false }
-      - { name: "layout", label: "Layout", widget: "hidden", default: "page.njk" }
-      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/{{slug}}/" }
-      - { name: "body", label: "Body", widget: "markdown" }
-      - name: "seo"
-        label: "SEO"
-        widget: "object"
-        required: false
-        fields:
-          - { name: "title", label: "SEO Title", widget: "string", required: false }
-          - { name: "description", label: "SEO Description", widget: "text", required: false }
+      - name: bio
+        type: textarea
 
-  - name: "authors"
-    label: "Authors"
-    folder: "src/content/authors"
-    create: true
-    slug: "{{slug}}"
-    format: "md"
-    frontmatter_delimiter: "---"
-    fields:
-      - { name: "name", label: "Name", widget: "string" }
-      - { name: "slug", label: "Slug", widget: "string" }
-      - { name: "role", label: "Role", widget: "string", required: false }
-      - { name: "bio", label: "Bio", widget: "text", required: false }
-      - { name: "avatar", label: "Avatar", widget: "image", required: false }
-      - { name: "social", label: "Social links", widget: "list", required: false, field: { name: "link", label: "Link", widget: "string" } }
-      - { name: "layout", label: "Layout", widget: "hidden", default: "author.njk" }
-      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/authors/{{slug}}/" }
-
-  - name: "blog"
-    label: "Blog"
-    folder: "src/content/blog"
-    create: true
-    slug: "{{slug}}"
-    format: "md"
-    frontmatter_delimiter: "---"
-    fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "slug", label: "Slug", widget: "string" }
-      - { name: "pubDate", label: "Published", widget: "datetime" }
-      - { name: "author", label: "Author", widget: "relation", collection: "authors", search_fields: ["name"], value_field: "slug", display_fields: ["name"] }
-      - { name: "image", label: "Hero image", widget: "image", required: false }
-      - { name: "description", label: "Description", widget: "text" }
-      - { name: "layout", label: "Layout", widget: "hidden", default: "page.njk" }
-      - { name: "permalink", label: "Permalink", widget: "hidden", default: "/blog/{{slug}}/" }
-      - { name: "body", label: "Body", widget: "markdown" }
-      - { name: "tags", label: "Tags", widget: "list", required: false }
-
-# Optional: pages index and preview settings (depends on your CMS)
-# preview: true
-# public: true
+      - name: avatar
+        type: image
