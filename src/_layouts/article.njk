@@ -4,18 +4,18 @@ layout: base.njk
 <article class="min-h-screen">
   <header class="bg-muted/30">
     <div class="container mx-auto px-4 py-12">
-      <nav class="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+      <nav class="mb-6 flex items-center gap-2 text-sm text-muted-foreground" aria-label="Breadcrumb">
         <a href="/" class="hover:text-foreground">Home</a>
         <span>/</span>
-        <a href="/categories" class="hover:text-foreground">Categories</a>
+        <a href="/{{ type | lower }}s/" class="hover:text-foreground">{{ type | capitalize }}</a>
         <span>/</span>
-        <a href="/categories/{{ category }}/" class="hover:text-foreground">{{ category | capitalize }}</a>
+        <span class="text-foreground">{{ title }}</span>
       </nav>
 
       <div class="mx-auto max-w-4xl">
         <div class="mb-4 flex flex-wrap items-center gap-2">
-          <a href="/categories/{{ category }}/" class="inline-block rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground">
-            {{ category | capitalize }}
+          <a href="/{{ type | lower }}s/" class="inline-block rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground">
+            {{ type | capitalize }}
           </a>
         </div>
 
@@ -23,32 +23,14 @@ layout: base.njk
           {{ title }}
         </h1>
 
-        <p class="mb-6 text-lg text-muted-foreground md:text-xl">
+        <p class="mb-4 text-lg text-muted-foreground md:text-xl">
           {{ description }}
         </p>
 
-        <div class="flex flex-wrap items-center justify-between gap-4 text-sm">
-          <div class="flex items-center gap-4">
-            {% set authorData = authors | findAuthor(author) %}
-            {% if authorData %}
-            <div class="flex items-center gap-2">
-              <img src="{{ authorData.avatar }}" alt="{{ authorData.name }}" class="h-10 w-10 rounded-full object-cover">
-              <div>
-                <p class="font-medium text-foreground">{{ authorData.name }}</p>
-                <p class="text-xs text-muted-foreground">{{ pubDate | dateFormat }}</p>
-              </div>
-            </div>
-            {% endif %}
-          </div>
-          <div class="flex items-center gap-3">
-            {% if readingTime %}
-            <span class="rounded-full bg-muted px-3 py-1 text-sm">{{ readingTime }} min</span>
-            {% endif %}
-            {% if rating %}
-            <span class="rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">Rating: {{ rating }}/5</span>
-            {% endif %}
-          </div>
+        <div class="mb-6 text-sm text-muted-foreground">
+          By {{ author }} • {{ date | dateFormat }} • {{ content | readingTime }} min read • {{ type }}
         </div>
+      </div>
       </div>
     </div>
   </header>
@@ -56,7 +38,7 @@ layout: base.njk
   {% if image %}
   <div class="container mx-auto px-4 -mt-4 relative z-10">
     <div class="mx-auto max-w-5xl">
-      <img src="{{ image.url }}" alt="{{ image.alt }}" loading="eager" class="w-full rounded-2xl object-cover shadow-xl">
+      <img src="{{ image }}" alt="{{ title }}" loading="eager" class="w-full rounded-2xl object-cover shadow-xl">
     </div>
   </div>
   {% endif %}
@@ -73,73 +55,6 @@ layout: base.njk
         <div class="flex flex-wrap gap-2">
           {% for tag in tags %}
           <a href="/tags/{{ tag }}" class="rounded-full bg-muted px-3 py-1.5 text-sm text-muted-foreground hover:bg-primary hover:text-primary-foreground">{{ tag }}</a>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-
-      {% if pros and pros.length > 0 %}
-      <div class="my-8 rounded-xl bg-green-50 p-6">
-        <h3 class="mb-3 text-lg font-semibold text-green-700">Pros</h3>
-        <ul class="space-y-2">
-          {% for pro in pros %}
-          <li class="flex items-start gap-2">
-            <span class="text-green-600">+</span>
-            <span>{{ pro }}</span>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if cons and cons.length > 0 %}
-      <div class="my-8 rounded-xl bg-red-50 p-6">
-        <h3 class="mb-3 text-lg font-semibold text-red-700">Cons</h3>
-        <ul class="space-y-2">
-          {% for con in cons %}
-          <li class="flex items-start gap-2">
-            <span class="text-red-600">-</span>
-            <span>{{ con }}</span>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      {% if faq and faq.length > 0 %}
-      <div class="my-8">
-        <h2 class="mb-4 text-2xl font-bold">Frequently Asked Questions</h2>
-        <div class="space-y-4">
-          {% for item in faq %}
-          <div class="rounded-lg bg-muted/50 p-6">
-            <h3 class="mb-2 font-semibold">{{ item.question }}</h3>
-            <p class="text-muted-foreground">{{ item.answer }}</p>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-
-      {% if tools and tools.length > 0 %}
-      <div class="my-8 rounded-xl border bg-card p-6">
-        <h3 class="mb-3 font-semibold">Tool Details</h3>
-        <div class="space-y-4">
-          {% for tool in tools %}
-          <div class="border-b pb-4 last:border-0">
-            <div class="flex justify-between">
-              <span class="text-muted-foreground">Name</span>
-              <span class="font-medium">{{ tool.name }}</span>
-            </div>
-            {% if tool.pricing %}
-            <div class="flex justify-between mt-1">
-              <span class="text-muted-foreground">Pricing</span>
-              <span class="capitalize">{{ tool.pricing }}</span>
-            </div>
-            {% endif %}
-            {% if tool.url %}
-            <a href="{{ tool.url }}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-block text-primary hover:underline text-sm">Visit Website</a>
-            {% endif %}
-          </div>
           {% endfor %}
         </div>
       </div>

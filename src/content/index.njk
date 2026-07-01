@@ -34,10 +34,46 @@ permalink: /index.html
 
     <div class="grid gap-6 md:grid-cols-3">
       {% for article in collections.articles | reverse | slice(0, 6) %}
-      <a href="{{ article.url }}" class="block rounded-xl border p-6 hover:shadow">
-        <h3 class="mb-2 text-lg font-bold">{{ article.data.title }}</h3>
-        <p class="text-sm text-gray-600">{{ article.data.description }}</p>
-      </a>
+      <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+        <a href="{{ article.url }}">
+          {% if article.data.image %}
+          <div class="aspect-video overflow-hidden">
+            <img
+              src="{{ article.data.image.url }}"
+              alt="{{ article.data.image.alt }}"
+              loading="lazy"
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            >
+          </div>
+          {% endif %}
+          <div class="p-5">
+            <div class="mb-3 flex items-center gap-2">
+              <span class="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                {{ article.data.type | default(article.data.category) }}
+              </span>
+              {% if article.data.featured %}
+              <span class="inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
+                Featured
+              </span>
+              {% endif %}
+            </div>
+            <h3 class="mb-2 text-xl font-bold leading-tight group-hover:text-primary">
+              {{ article.data.title }}
+            </h3>
+            <p class="mb-4 line-clamp-2 text-muted-foreground">
+              {{ article.data.description }}
+            </p>
+            <div class="flex items-center justify-between text-sm text-muted-foreground">
+              <time datetime="{{ article.data.date | default(article.data.pubDate) | dateFormat('iso') }}">
+                {{ article.data.date | default(article.data.pubDate) | dateFormat }}
+              </time>
+              {% if article.data.readingTime %}
+              <span>{{ article.data.readingTime }} min read</span>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      </article>
       {% endfor %}
     </div>
   </div>

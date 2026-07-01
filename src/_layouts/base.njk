@@ -3,40 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }} | Solopreneur Tools</title>
-  <meta name="description" content="{{ description }}">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="description" content="{{ description | default(site.site.description) }}">
+  <meta name="author" content="{{ site.site.author }}">
+  <meta name="keywords" content="{{ keywords | default('solopreneur tools, software reviews, guides, comparisons, productivity tools, automation tools') }}">
+  <title>{{ title }} | {{ site.site.name }}</title>
 
   {% if canonical %}
   <link rel="canonical" href="{{ canonical }}">
+  {% else %}
+  <link rel="canonical" href="{{ site.site.url }}{{ page.url }}">
   {% endif %}
 
   <meta property="og:type" content="{{ type | default('website') }}">
-  <meta property="og:url" content="{{ canonical }}">
-  <meta property="og:title" content="{{ title }}">
-  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ canonical | default(site.site.url ~ page.url) }}">
+  <meta property="og:title" content="{{ title }} | {{ site.site.name }}">
+  <meta property="og:description" content="{{ description | default(site.site.description) }}">
   {% if image %}
   <meta property="og:image" content="{{ image }}">
   {% endif %}
+  <meta property="og:site_name" content="{{ site.site.name }}">
+  <meta property="og:locale" content="{{ site.site.locale | default('en_US') }}">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ title }}">
-  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:site" content="{{ site.site.twitter | default('@solopreneurtools') }}">
+  <meta name="twitter:title" content="{{ title }} | {{ site.site.name }}">
+  <meta name="twitter:description" content="{{ description | default(site.site.description) }}">
+  {% if image %}
+  <meta name="twitter:image" content="{{ image }}">
+  {% endif %}
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.site.name }} RSS" href="/feed.xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
+
+  {% if type == 'Guide' or type == 'Review' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ title }}",
+    "description": "{{ description }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ author }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.site.name }}",
+      "url": "{{ site.site.url }}"
+    },
+    "mainEntityOfPage": "{{ canonical | default(site.site.url ~ page.url) }}",
+    "datePublished": "{{ date | default(pubDate) }}",
+    "dateModified": "{{ date | default(pubDate) }}"
+  }
+  </script>
+  {% endif %}
 </head>
 <body class="min-h-screen bg-background text-foreground antialiased">
   {% include "header.njk" %}
 
-  <main>
+  <main id="main-content">
     {{ content | safe }}
   </main>
 
   {% include "footer.njk" %}
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    lucide.createIcons();
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer>
+    window.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    });
   </script>
 </body>
 </html>

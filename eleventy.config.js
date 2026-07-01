@@ -55,6 +55,10 @@ export default function(eleventyConfig) {
     return Array.from(tags).sort();
   });
 
+  eleventyConfig.addCollection('sitemapPages', function(collectionApi) {
+    return collectionApi.getAll().filter(item => !item.data.draft);
+  });
+
   // Filters
   eleventyConfig.addFilter('limit', function(array, limit) {
     if (!Array.isArray(array)) return [];

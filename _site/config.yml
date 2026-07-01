@@ -8,24 +8,29 @@ public_folder: "/assets/images"
 collections:
   - name: "articles"
     label: "Articles"
-    folder: "src/content/articles"
+    folder: "src/content/posts"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Type", name: "type", widget: "select", options: ["Guide", "Review", "Comparison", "News"] }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Author", name: "author", widget: "string", default: "admin" }
       - label: "Image"
         name: "image"
-        widget: "object"
-        fields:
-          - { label: "URL", name: "url", widget: "string" }
-          - { label: "Alt Text", name: "alt", widget: "string" }
-      - { label: "Category", name: "category", widget: "string" }
+        widget: "string"
+      - { label: "Alt Text", name: "imageAlt", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "string", required: false }
       - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Reading Time", name: "readingTime", widget: "number", default: 5 }
       - { label: "Rating", name: "rating", widget: "number", default: 4, min: 1, max: 5 }
+      - { label: "Keywords", name: "keywords", widget: "list", required: false }
+      - { label: "Difficulty", name: "difficulty", widget: "select", options: ["beginner", "intermediate", "advanced"], required: false }
+      - { label: "FAQ", name: "faq", widget: "list", field: { label: "FAQ Item", name: "faq", widget: "object", fields: [ { label: "Question", name: "question", widget: "string" }, { label: "Answer", name: "answer", widget: "text" } ] }, required: false }
+      - { label: "Pros", name: "pros", widget: "list", required: false }
+      - { label: "Cons", name: "cons", widget: "list", required: false }
+      - { label: "Tools", name: "tools", widget: "list", field: { label: "Tool", name: "tool", widget: "object", fields: [ { label: "Name", name: "name", widget: "string" }, { label: "URL", name: "url", widget: "string" }, { label: "Pricing", name: "pricing", widget: "string" } ] }, required: false }
       - { label: "Body", name: "body", widget: "markdown" }

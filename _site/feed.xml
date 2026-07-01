@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>5kmvp</title>
+    <link>https://solopreneurtools.com</link>
+    <description>Essential tools and resources for solo business owners</description>
+    <atom:link href="https://solopreneurtools.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>New Solopreneur Resources Launch</title>
+      <link>https://solopreneurtools.com/blog/launch-announcement/</link>
+      <description>Announcing new guides, reviews, and comparison content for solopreneurs looking to scale smarter.</description>
+      <pubDate>Tue Jun 30 2026 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>Pages CMS Content Management Ready</title>
+      <link>https://solopreneurtools.com/blog/cms-update/</link>
+      <description>We’ve configured Pages CMS for guides, reviews, comparisons, pages, authors, and media uploads.</description>
+      <pubDate>Tue Jun 30 2026 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>Best CRM Tools for Solopreneurs</title>
+      <link>https://solopreneurtools.com/guides/best-crm-tools/</link>
+      <description>A guide to the best lightweight CRM tools designed for solo founders and freelancers.</description>
+      <pubDate>Tue Jun 30 2026 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>Notion Review: Is Notion Right for Solopreneurs?</title>
+      <link>https://solopreneurtools.com/reviews/notion-review/</link>
+      <description>A review of Notion for solo business owners, including pros, cons, and productivity workflows.</description>
+      <pubDate>Tue Jun 30 2026 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>Notion vs Obsidian: Which One Should Solopreneurs Use?</title>
+      <link>https://solopreneurtools.com/comparisons/notion-vs-obsidian/</link>
+      <description>A comparison of Notion and Obsidian for solo business owners, focused on note-taking, knowledge management, and workflows.</description>
+      <pubDate>Tue Jun 30 2026 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>Buffer Review: Social Media Scheduling for Busy Solopreneurs</title>
+      <link>https://solopreneurtools.com/reviews/buffer-review/</link>
+      <description>Complete Buffer review for 2024. Schedule posts, analyze performance, and manage all your social media from one simple dashboard built for solo businesses.</description>
+      <pubDate>Fri Mar 01 2024 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>QuickBooks Self-Employed Review: Accounting Made Simple</title>
+      <link>https://solopreneurtools.com/reviews/quickbooks-self-employed/</link>
+      <description>Honest QuickBooks Self-Employed review for freelancers and solopreneurs. Track expenses, maximize deductions, and simplify tax time with this dedicated accounting software.</description>
+      <pubDate>Tue Feb 20 2024 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>Grammarly Review: AI Writing Assistant for Perfect Content</title>
+      <link>https://solopreneurtools.com/reviews/grammarly-review/</link>
+      <description>Complete Grammarly review for 2024. From free browser extension to Premium AI writing assistant, see if Grammarly improves your professional writing.</description>
+      <pubDate>Thu Feb 15 2024 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>HoneyBook Review: All-in-One Client Management for Freelancers</title>
+      <link>https://solopreneurtools.com/reviews/honeybook-review/</link>
+      <description>Complete HoneyBook review covering CRM, invoicing, contracts, and booking. See if this client management platform is right for your solo service business.</description>
+      <pubDate>Thu Feb 08 2024 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+    <item>
+      <title>Canva Pro Review: Design Without a Designer in 2024</title>
+      <link>https://solopreneurtools.com/reviews/canva-pro-review/</link>
+      <description>Complete Canva Pro review for solopreneurs. Create professional graphics, presentations, and social media content without design skills or expensive software.</description>
+      <pubDate>Thu Feb 01 2024 02:00:00 GMT+0200 (Central Africa Time)</pubDate>
+    </item>
+    
+  </channel>
+</rss>

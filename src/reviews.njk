@@ -8,13 +8,42 @@ permalink: /reviews/
 <section class="container mx-auto px-4 py-12">
   <h1 class="mb-8 text-4xl font-bold">Reviews</h1>
 
-  <div class="grid gap-6">
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
     {% for article in collections.reviews %}
-    <article class="rounded-xl border p-6">
-      <h2 class="mb-2 text-2xl font-bold">
-        <a href="{{ article.url }}">{{ article.data.title }}</a>
-      </h2>
-      <p>{{ article.data.description }}</p>
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+      <a href="{{ article.url }}">
+        {% if article.data.image %}
+        <div class="aspect-video overflow-hidden">
+          <img
+            src="{{ article.data.image.url }}"
+            alt="{{ article.data.image.alt }}"
+            loading="lazy"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          >
+        </div>
+        {% endif %}
+        <div class="p-5">
+          <div class="mb-3 flex items-center gap-2">
+            <span class="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+              {{ article.data.category }}
+            </span>
+          </div>
+          <h2 class="mb-2 text-xl font-bold leading-tight group-hover:text-primary">
+            {{ article.data.title }}
+          </h2>
+          <p class="mb-4 line-clamp-2 text-muted-foreground">
+            {{ article.data.description }}
+          </p>
+          <div class="flex items-center justify-between text-sm text-muted-foreground">
+            <time datetime="{{ article.data.pubDate | dateFormat('iso') }}">
+              {{ article.data.pubDate | dateFormat }}
+            </time>
+            {% if article.data.readingTime %}
+            <span>{{ article.data.readingTime }} min read</span>
+            {% endif %}
+          </div>
+        </div>
+      </a>
     </article>
     {% endfor %}
   </div>
