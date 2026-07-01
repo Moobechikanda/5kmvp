@@ -49,28 +49,8 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.site.name }} RSS" href="/feed.xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
 
-  {% if type == 'Guide' or type == 'Review' %}
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "{{ title }}",
-    "description": "{{ description }}",
-    "author": {
-      "@type": "Person",
-      "name": "{{ author }}"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "{{ site.site.name }}",
-      "url": "{{ site.site.url }}"
-    },
-    "mainEntityOfPage": "{{ canonical | default(site.site.url ~ page.url) }}",
-    "datePublished": "{{ date | default(pubDate) }}",
-    "dateModified": "{{ date | default(pubDate) }}"
-  }
-  </script>
-  {% endif %}
+  {% include "partials/schema.njk" %}
+  {% include "partials/organization-schema.njk" %}
 </head>
 <body class="min-h-screen bg-background text-foreground antialiased">
   {% include "header.njk" %}

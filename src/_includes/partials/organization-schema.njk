@@ -1,0 +1,14 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ site.site.name | dump | safe }},
+  "url": "{{ site.site.url }}",
+  "logo": "{{ site.site.url }}{{ site.site.logo | default('/images/logo.png') }}",
+  "sameAs": [
+    {% if site.site.social and site.site.social.twitter %}
+    "{{ site.site.social.twitter }}"
+    {% endif %}
+  ]
+}
+</script>

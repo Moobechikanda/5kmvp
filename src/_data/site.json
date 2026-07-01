@@ -1,9 +1,13 @@
 {
   "site": {
     "name": "5kmvp",
-    "url": "https://solopreneurtools.com",
+    "url": "https://5kmvp.com",
     "description": "Essential tools and resources for solo business owners",
     "author": "Moobe Pretorius Chikanda",
-    "email": "chikanda120@gmail.com"
+    "email": "chikanda120@gmail.com",
+    "logo": "/images/logo.png",
+    "social": {
+      "twitter": "https://x.com/5kmvp"
+    }
   }
 }
