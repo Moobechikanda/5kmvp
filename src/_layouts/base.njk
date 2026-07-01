@@ -4,34 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0f172a">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="description" content="{{ description | default(site.site.description) }}">
   <meta name="author" content="{{ site.site.author }}">
   <meta name="keywords" content="{{ keywords | default('solopreneur tools, software reviews, guides, comparisons, productivity tools, automation tools') }}">
-  <title>{{ title }} | {{ site.site.name }}</title>
+  <title>
+    {% if seo and seo.title %}
+    {{ seo.title }}
+    {% else %}
+    {{ title }} | {{ site.site.name }}
+    {% endif %}
+  </title>
 
-  {% if canonical %}
-  <link rel="canonical" href="{{ canonical }}">
-  {% else %}
-  <link rel="canonical" href="{{ site.site.url }}{{ page.url }}">
-  {% endif %}
+  <meta name="description" content="{% if seo and seo.description %}{{ seo.description }}{% else %}{{ description | default(site.site.description) }}{% endif %}">
 
-  <meta property="og:type" content="{{ type | default('website') }}">
-  <meta property="og:url" content="{{ canonical | default(site.site.url ~ page.url) }}">
-  <meta property="og:title" content="{{ title }} | {{ site.site.name }}">
-  <meta property="og:description" content="{{ description | default(site.site.description) }}">
-  {% if image %}
+  <link rel="canonical" href="{% if seo and seo.canonical %}{{ seo.canonical }}{% else %}{{ site.site.url }}{{ page.url }}{% endif %}">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://5kmvp.com{{ page.url }}">
+  <meta property="og:title" content="{% if seo and seo.title %}{{ seo.title }}{% else %}{{ title }}{% endif %}">
+  <meta property="og:description" content="{% if seo and seo.description %}{{ seo.description }}{% else %}{{ description | default(site.site.description) }}{% endif %}">
+  {% if seo and seo.ogImage %}
+  <meta property="og:image" content="{{ seo.ogImage }}">
+  {% elseif image %}
   <meta property="og:image" content="{{ image }}">
   {% endif %}
   <meta property="og:site_name" content="{{ site.site.name }}">
   <meta property="og:locale" content="{{ site.site.locale | default('en_US') }}">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="{{ site.site.twitter | default('@solopreneurtools') }}">
-  <meta name="twitter:title" content="{{ title }} | {{ site.site.name }}">
-  <meta name="twitter:description" content="{{ description | default(site.site.description) }}">
-  {% if image %}
+  <meta name="twitter:title" content="{% if seo and seo.title %}{{ seo.title }}{% else %}{{ title }}{% endif %}">
+  <meta name="twitter:description" content="{% if seo and seo.description %}{{ seo.description }}{% else %}{{ description | default(site.site.description) }}{% endif %}">
+  {% if seo and seo.ogImage %}
+  <meta name="twitter:image" content="{{ seo.ogImage }}">
+  {% elseif image %}
   <meta name="twitter:image" content="{{ image }}">
+  {% endif %}
+
+  {% if seo and seo.noindex %}
+  <meta name="robots" content="noindex,nofollow">
+  {% else %}
+  <meta name="robots" content="index,follow">
   {% endif %}
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
