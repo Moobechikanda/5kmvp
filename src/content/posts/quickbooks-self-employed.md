@@ -2,6 +2,7 @@
 title: "QuickBooks Self-Employed Review: Accounting Made Simple"
 description: "Honest QuickBooks Self-Employed review for freelancers and solopreneurs. Track expenses, maximize deductions, and simplify tax time with this dedicated accounting software."
 pubDate: 2024-02-20
+type: "Review"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/6693685/pexels-photo-6693685.jpeg?auto=compress&cs=tinysrgb&w=1200"

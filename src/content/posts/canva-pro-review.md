@@ -2,6 +2,7 @@
 title: "Canva Pro Review: Design Without a Designer in 2024"
 description: "Complete Canva Pro review for solopreneurs. Create professional graphics, presentations, and social media content without design skills or expensive software."
 pubDate: 2024-02-01
+type: "Review"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1200"

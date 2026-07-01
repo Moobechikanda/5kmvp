@@ -2,6 +2,7 @@
 title: "ChatGPT for Solopreneurs: Complete Guide to AI-Powered Productivity"
 description: "Discover how ChatGPT can revolutionize your solo business. From content creation to customer service, learn practical applications that save time and boost revenue."
 pubDate: 2024-01-20
+type: "Guide"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1200"

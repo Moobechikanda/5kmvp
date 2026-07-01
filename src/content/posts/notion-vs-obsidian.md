@@ -2,6 +2,7 @@
 title: "Notion vs Obsidian: Which One Should Solopreneurs Use?"
 description: "A comparison of Notion and Obsidian for solo business owners, focused on note-taking, knowledge management, and workflows."
 pubDate: 2026-06-30
+type: "Comparison"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=1200"

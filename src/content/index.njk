@@ -1,63 +1,44 @@
 ---
 layout: base.njk
-title: Home
-description: Browse all tool reviews, guides, and resources for solopreneurs.
+title: 5kmvp - Best Software for Solopreneurs
+description: Discover, compare, and review the best tools to grow your online business.
 permalink: /index.html
 ---
 
-<section class="bg-muted/30">
-  <div class="container mx-auto px-4 py-12">
-    <nav class="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
-      <a href="/" class="hover:text-foreground">Home</a>
-      <span>/</span>
-      <span class="text-foreground">Articles</span>
-    </nav>
-
-    <h1 class="mb-4 text-4xl font-bold md:text-5xl">All Articles</h1>
-    <p class="text-lg text-muted-foreground max-w-2xl">
-      Browse all our tool reviews, guides, and resources for solopreneurs.
+<section class="py-20 text-center">
+  <div class="container mx-auto max-w-3xl px-4">
+    <h1 class="mb-6 text-5xl font-bold">Find the Best Software to Grow Your Business</h1>
+    <p class="mb-8 text-lg text-gray-600">
+      Compare tools, read reviews, and discover what actually works for solopreneurs.
     </p>
+    <a href="/guides/" class="rounded-lg bg-black px-6 py-3 text-white">Explore Guides</a>
   </div>
 </section>
 
-<section class="container mx-auto px-4 py-12">
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {% for article in collections.articles %}
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
-      <a href="{{ article.url }}">
-        {% if article.data.image %}
-        <div class="aspect-video overflow-hidden">
-          <img
-            src="{{ article.data.image.url }}"
-            alt="{{ article.data.image.alt }}"
-            loading="lazy"
-            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          >
-        </div>
-        {% endif %}
-        <div class="p-5">
-          <div class="mb-3 flex items-center gap-2">
-            <span class="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-              {{ article.data.category }}
-            </span>
-          </div>
-          <h3 class="mb-2 text-xl font-bold leading-tight group-hover:text-primary">
-            {{ article.data.title }}
-          </h3>
-          <p class="mb-4 line-clamp-2 text-muted-foreground">
-            {{ article.data.description }}
-          </p>
-          <div class="flex items-center justify-between text-sm text-muted-foreground">
-            <time datetime="{{ article.data.pubDate | dateFormat('iso') }}">
-              {{ article.data.pubDate | dateFormat }}
-            </time>
-            {% if article.data.readingTime %}
-            <span>{{ article.data.readingTime }} min read</span>
-            {% endif %}
-          </div>
-        </div>
+<section class="bg-gray-50 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="mb-8 text-center text-2xl font-bold">Browse Categories</h2>
+
+    <div class="grid grid-cols-2 gap-4 text-center md:grid-cols-4">
+      <a href="/guides/" class="rounded-xl bg-white p-6 shadow">Guides</a>
+      <a href="/reviews/" class="rounded-xl bg-white p-6 shadow">Reviews</a>
+      <a href="/comparisons/" class="rounded-xl bg-white p-6 shadow">Comparisons</a>
+      <a href="/articles/" class="rounded-xl bg-white p-6 shadow">All Articles</a>
+    </div>
+  </div>
+</section>
+
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <h2 class="mb-8 text-2xl font-bold">Latest Articles</h2>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {% for article in collections.articles | reverse | slice(0, 6) %}
+      <a href="{{ article.url }}" class="block rounded-xl border p-6 hover:shadow">
+        <h3 class="mb-2 text-lg font-bold">{{ article.data.title }}</h3>
+        <p class="text-sm text-gray-600">{{ article.data.description }}</p>
       </a>
-    </article>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 </section>

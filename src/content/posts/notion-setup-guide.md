@@ -2,6 +2,7 @@
 title: "Notion for Solopreneurs: Build Your Ultimate Business Dashboard"
 description: "Transform Notion into your all-in-one business command center. Complete guide with templates for project management, client tracking, and knowledge base."
 pubDate: 2024-01-25
+type: "Guide"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1200"

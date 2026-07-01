@@ -2,6 +2,7 @@
 title: "Best CRM Tools for Solopreneurs"
 description: "A guide to the best lightweight CRM tools designed for solo founders and freelancers."
 pubDate: 2026-06-30
+type: "Guide"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/3184332/pexels-photo-3184332.jpeg?auto=compress&cs=tinysrgb&w=1200"

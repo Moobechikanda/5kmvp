@@ -28,6 +28,21 @@ export default function(eleventyConfig) {
       .sort((a, b) => new Date(getPostDate(b)) - new Date(getPostDate(a)));
   });
 
+  eleventyConfig.addCollection('guides', function(collectionApi) {
+    return collectionApi.getFilteredByGlob('src/content/posts/*.md')
+      .filter(item => !item.data.draft && item.data.type === 'Guide');
+  });
+
+  eleventyConfig.addCollection('reviews', function(collectionApi) {
+    return collectionApi.getFilteredByGlob('src/content/posts/*.md')
+      .filter(item => !item.data.draft && item.data.type === 'Review');
+  });
+
+  eleventyConfig.addCollection('comparisons', function(collectionApi) {
+    return collectionApi.getFilteredByGlob('src/content/posts/*.md')
+      .filter(item => !item.data.draft && item.data.type === 'Comparison');
+  });
+
   eleventyConfig.addCollection('allTags', function(collectionApi) {
     const articles = collectionApi.getFilteredByGlob('src/content/posts/*.md')
       .filter(item => !item.data.draft);

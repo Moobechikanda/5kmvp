@@ -2,6 +2,7 @@
 title: "New Solopreneur Resources Launch"
 description: "Announcing new guides, reviews, and comparison content for solopreneurs looking to scale smarter."
 pubDate: 2026-06-30
+type: "News"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"

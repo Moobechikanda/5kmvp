@@ -2,6 +2,7 @@
 title: "Zapier Review 2024: The Ultimate Automation Tool for Solopreneurs"
 description: "Complete Zapier review covering features, pricing, and real-world use cases for solopreneurs. Learn how to automate your business workflows and save hours every week."
 pubDate: 2024-01-15
+type: "Guide"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1200"

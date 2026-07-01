@@ -21,9 +21,21 @@ permalink: /articles/index.html
 </section>
 
 <section class="container mx-auto px-4 py-12">
+  {% if query %}
+  <p class="mb-6 text-sm text-muted-foreground">Showing results for “{{ query }}”.</p>
+  {% endif %}
+
+  <div class="mb-8 rounded-xl border bg-background p-4 shadow-sm">
+    <label for="article-search" class="mb-2 block text-sm font-medium">Search articles</label>
+    <div class="relative">
+      <input id="article-search" type="search" value="{{ query or '' }}" placeholder="Try “Notion”, “Zapier”, or “CRM”" class="w-full rounded-lg border border-input bg-background px-4 py-3 pr-10 text-sm outline-none ring-0 focus:border-primary" autocomplete="off" />
+      <div id="article-search-suggestions" class="absolute left-0 right-0 top-full z-20 mt-2 hidden rounded-lg border bg-background shadow-lg" role="listbox"></div>
+    </div>
+  </div>
+
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {% for article in collections.articles %}
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="{{ article.data.title }}" data-url="{{ article.url }}" data-search="{{ article.data.title }} {{ article.data.description }} {{ article.data.category }} {% for tag in article.data.tags %}{{ tag }} {% endfor %}">
       <a href="{{ article.url }}">
         {% if article.data.image %}
         <div class="aspect-video overflow-hidden">
@@ -60,4 +72,107 @@ permalink: /articles/index.html
     </article>
     {% endfor %}
   </div>
+  <p id="search-empty-state" class="mt-8 hidden text-center text-muted-foreground">No articles matched your search.</p>
 </section>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const initialQuery = (params.get('q') || '').trim();
+  const searchInput = document.getElementById('article-search');
+  const suggestions = document.getElementById('article-search-suggestions');
+  const cards = Array.from(document.querySelectorAll('.js-article-card'));
+  const emptyState = document.getElementById('search-empty-state');
+
+  const normalize = (value = '') => value.toLowerCase().trim();
+
+  const updateResults = (query) => {
+    const term = normalize(query);
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const haystack = normalize(card.dataset.search || '');
+      const matches = !term || haystack.includes(term);
+      card.style.display = matches ? '' : 'none';
+      if (matches) visibleCount += 1;
+    });
+
+    if (emptyState) {
+      emptyState.classList.toggle('hidden', visibleCount !== 0 || !term);
+    }
+  };
+
+  const showSuggestions = (query) => {
+    const term = normalize(query);
+    if (!term) {
+      suggestions.innerHTML = '';
+      suggestions.classList.add('hidden');
+      return;
+    }
+
+    const matches = cards
+      .map(card => ({
+        title: card.dataset.title || '',
+        url: card.dataset.url || ''
+      }))
+      .filter(item => normalize(item.title).includes(term))
+      .slice(0, 5);
+
+    if (matches.length === 0) {
+      suggestions.innerHTML = '<div class="px-3 py-2 text-sm text-muted-foreground">No matching articles</div>';
+    } else {
+      suggestions.innerHTML = matches.map(item => `
+        <a href="${item.url}" class="block px-3 py-2 text-sm hover:bg-muted focus:bg-muted focus:outline-none" role="option">
+          ${item.title}
+        </a>
+      `).join('');
+    }
+
+    suggestions.classList.remove('hidden');
+  };
+
+  const hideSuggestions = () => suggestions.classList.add('hidden');
+
+  if (searchInput) {
+    searchInput.value = initialQuery;
+    updateResults(initialQuery);
+    if (initialQuery) showSuggestions(initialQuery);
+
+    searchInput.addEventListener('input', (event) => {
+      updateResults(event.target.value);
+      showSuggestions(event.target.value);
+    });
+
+    searchInput.addEventListener('focus', () => {
+      if (searchInput.value.trim()) showSuggestions(searchInput.value);
+    });
+
+    searchInput.addEventListener('keydown', (event) => {
+      const links = suggestions.querySelectorAll('a');
+      if (!links.length) return;
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        const activeIndex = Array.from(links).findIndex(link => link === document.activeElement);
+        const nextIndex = activeIndex < links.length - 1 ? activeIndex + 1 : 0;
+        links[nextIndex].focus();
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const activeIndex = Array.from(links).findIndex(link => link === document.activeElement);
+        const nextIndex = activeIndex > 0 ? activeIndex - 1 : links.length - 1;
+        links[nextIndex].focus();
+      }
+
+      if (event.key === 'Escape') {
+        hideSuggestions();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!searchInput.contains(event.target) && !suggestions.contains(event.target)) {
+        hideSuggestions();
+      }
+    });
+  }
+</script>

@@ -2,6 +2,7 @@
 title: "HoneyBook Review: All-in-One Client Management for Freelancers"
 description: "Complete HoneyBook review covering CRM, invoicing, contracts, and booking. See if this client management platform is right for your solo service business."
 pubDate: 2024-02-08
+type: "Review"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/7869091/pexels-photo-7869091.jpeg?auto=compress&cs=tinysrgb&w=1200"

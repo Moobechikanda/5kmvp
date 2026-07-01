@@ -2,6 +2,7 @@
 title: "Pages CMS Content Management Ready"
 description: "We’ve configured Pages CMS for guides, reviews, comparisons, pages, authors, and media uploads."
 pubDate: 2026-06-30
+type: "News"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1200"

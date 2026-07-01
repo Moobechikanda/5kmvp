@@ -28,15 +28,26 @@
       <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-foreground"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
       </div>
-      <span class="text-xl font-bold">5kmvp</span>
+      <div class="flex flex-col">
+        <span class="text-xl font-bold tracking-tight">5kmvp</span>
+        <span class="text-xs text-gray-500">Software for Solopreneurs</span>
+      </div>
     </a>
 
-    <nav class="flex items-center gap-6">
-      <a href="/articles" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Articles</a>
-      <a href="/categories" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Categories</a>
-      <a href="/about" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">About</a>
-      <a href="/contact" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contact</a>
-    </nav>
+    <div class="flex items-center gap-4">
+      <nav class="flex items-center gap-8">
+        <a href="/tools/" class="text-sm font-medium hover:text-primary">Tools</a>
+        <a href="/reviews/" class="text-sm font-medium hover:text-primary">Reviews</a>
+        <a href="/comparisons/" class="text-sm font-medium hover:text-primary">Comparisons</a>
+        <a href="/guides/" class="text-sm font-medium hover:text-primary">Guides</a>
+        <a href="/categories/" class="text-sm font-medium hover:text-primary">Categories</a>
+      </nav>
+      <form id="site-search-form" action="/articles/" method="get" class="relative flex items-center gap-2 rounded-lg border px-2 py-1.5">
+        <input id="site-search-input" type="search" name="q" placeholder="Search" class="w-24 bg-transparent text-sm outline-none" autocomplete="off" />
+        <button type="submit" class="rounded-lg border px-3 py-2 text-sm hover:bg-gray-100" aria-label="Search">🔍 Search</button>
+        <div id="site-search-suggestions" class="absolute left-0 right-0 top-full z-50 mt-2 hidden rounded-lg border bg-background shadow-lg" role="listbox"></div>
+      </form>
+    </div>
   </div>
 </header>
 
@@ -59,9 +70,19 @@
 </section>
 
 <section class="container mx-auto px-4 py-12">
+  
+
+  <div class="mb-8 rounded-xl border bg-background p-4 shadow-sm">
+    <label for="article-search" class="mb-2 block text-sm font-medium">Search articles</label>
+    <div class="relative">
+      <input id="article-search" type="search" value="" placeholder="Try “Notion”, “Zapier”, or “CRM”" class="w-full rounded-lg border border-input bg-background px-4 py-3 pr-10 text-sm outline-none ring-0 focus:border-primary" autocomplete="off" />
+      <div id="article-search-suggestions" class="absolute left-0 right-0 top-full z-20 mt-2 hidden rounded-lg border bg-background shadow-lg" role="listbox"></div>
+    </div>
+  </div>
+
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="New Solopreneur Resources Launch" data-url="/blog/launch-announcement/" data-search="New Solopreneur Resources Launch Announcing new guides, reviews, and comparison content for solopreneurs looking to scale smarter. news announcement launch solopreneur ">
       <a href="/blog/launch-announcement/">
         
         <div class="aspect-video overflow-hidden">
@@ -95,7 +116,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Pages CMS Content Management Ready" data-url="/blog/cms-update/" data-search="Pages CMS Content Management Ready We’ve configured Pages CMS for guides, reviews, comparisons, pages, authors, and media uploads. news cms pages content-management ">
       <a href="/blog/cms-update/">
         
         <div class="aspect-video overflow-hidden">
@@ -129,7 +150,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Best CRM Tools for Solopreneurs" data-url="/guides/best-crm-tools/" data-search="Best CRM Tools for Solopreneurs A guide to the best lightweight CRM tools designed for solo founders and freelancers. crm crm sales customer management ">
       <a href="/guides/best-crm-tools/">
         
         <div class="aspect-video overflow-hidden">
@@ -163,7 +184,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Notion Review: Is Notion Right for Solopreneurs?" data-url="/reviews/notion-review/" data-search="Notion Review: Is Notion Right for Solopreneurs? A review of Notion for solo business owners, including pros, cons, and productivity workflows. productivity notion productivity tools ">
       <a href="/reviews/notion-review/">
         
         <div class="aspect-video overflow-hidden">
@@ -197,7 +218,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Notion vs Obsidian: Which One Should Solopreneurs Use?" data-url="/comparisons/notion-vs-obsidian/" data-search="Notion vs Obsidian: Which One Should Solopreneurs Use? A comparison of Notion and Obsidian for solo business owners, focused on note-taking, knowledge management, and workflows. comparison notion obsidian knowledge management ">
       <a href="/comparisons/notion-vs-obsidian/">
         
         <div class="aspect-video overflow-hidden">
@@ -231,7 +252,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Buffer Review: Social Media Scheduling for Busy Solopreneurs" data-url="/reviews/buffer-review/" data-search="Buffer Review: Social Media Scheduling for Busy Solopreneurs Complete Buffer review for 2024. Schedule posts, analyze performance, and manage all your social media from one simple dashboard built for solo businesses. marketing social-media marketing scheduling buffer automation ">
       <a href="/reviews/buffer-review/">
         
         <div class="aspect-video overflow-hidden">
@@ -267,7 +288,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="QuickBooks Self-Employed Review: Accounting Made Simple" data-url="/reviews/quickbooks-self-employed/" data-search="QuickBooks Self-Employed Review: Accounting Made Simple Honest QuickBooks Self-Employed review for freelancers and solopreneurs. Track expenses, maximize deductions, and simplify tax time with this dedicated accounting software. finance accounting taxes bookkeeping quickbooks finance ">
       <a href="/reviews/quickbooks-self-employed/">
         
         <div class="aspect-video overflow-hidden">
@@ -303,7 +324,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Grammarly Review: AI Writing Assistant for Perfect Content" data-url="/reviews/grammarly-review/" data-search="Grammarly Review: AI Writing Assistant for Perfect Content Complete Grammarly review for 2024. From free browser extension to Premium AI writing assistant, see if Grammarly improves your professional writing. writing grammar writing ai content grammarly ">
       <a href="/reviews/grammarly-review/">
         
         <div class="aspect-video overflow-hidden">
@@ -339,7 +360,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="HoneyBook Review: All-in-One Client Management for Freelancers" data-url="/reviews/honeybook-review/" data-search="HoneyBook Review: All-in-One Client Management for Freelancers Complete HoneyBook review covering CRM, invoicing, contracts, and booking. See if this client management platform is right for your solo service business. productivity crm invoicing client-management freelancer-tools honeybook ">
       <a href="/reviews/honeybook-review/">
         
         <div class="aspect-video overflow-hidden">
@@ -375,7 +396,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Canva Pro Review: Design Without a Designer in 2024" data-url="/reviews/canva-pro-review/" data-search="Canva Pro Review: Design Without a Designer in 2024 Complete Canva Pro review for solopreneurs. Create professional graphics, presentations, and social media content without design skills or expensive software. design canva design graphics social-media branding ">
       <a href="/reviews/canva-pro-review/">
         
         <div class="aspect-video overflow-hidden">
@@ -411,7 +432,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Notion for Solopreneurs: Build Your Ultimate Business Dashboard" data-url="/guides/notion-setup-guide/" data-search="Notion for Solopreneurs: Build Your Ultimate Business Dashboard Transform Notion into your all-in-one business command center. Complete guide with templates for project management, client tracking, and knowledge base. productivity notion productivity organization project-management templates ">
       <a href="/guides/notion-setup-guide/">
         
         <div class="aspect-video overflow-hidden">
@@ -447,7 +468,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="ChatGPT for Solopreneurs: Complete Guide to AI-Powered Productivity" data-url="/guides/chatgpt-for-solopreneurs/" data-search="ChatGPT for Solopreneurs: Complete Guide to AI-Powered Productivity Discover how ChatGPT can revolutionize your solo business. From content creation to customer service, learn practical applications that save time and boost revenue. ai-tools ai chatgpt productivity content automation ">
       <a href="/guides/chatgpt-for-solopreneurs/">
         
         <div class="aspect-video overflow-hidden">
@@ -483,7 +504,7 @@
       </a>
     </article>
     
-    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg">
+    <article class="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg js-article-card" data-title="Zapier Review 2024: The Ultimate Automation Tool for Solopreneurs" data-url="/guides/zapier-guide/" data-search="Zapier Review 2024: The Ultimate Automation Tool for Solopreneurs Complete Zapier review covering features, pricing, and real-world use cases for solopreneurs. Learn how to automate your business workflows and save hours every week. automation automation workflow zapier productivity integration ">
       <a href="/guides/zapier-guide/">
         
         <div class="aspect-video overflow-hidden">
@@ -520,7 +541,110 @@
     </article>
     
   </div>
+  <p id="search-empty-state" class="mt-8 hidden text-center text-muted-foreground">No articles matched your search.</p>
 </section>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const initialQuery = (params.get('q') || '').trim();
+  const searchInput = document.getElementById('article-search');
+  const suggestions = document.getElementById('article-search-suggestions');
+  const cards = Array.from(document.querySelectorAll('.js-article-card'));
+  const emptyState = document.getElementById('search-empty-state');
+
+  const normalize = (value = '') => value.toLowerCase().trim();
+
+  const updateResults = (query) => {
+    const term = normalize(query);
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const haystack = normalize(card.dataset.search || '');
+      const matches = !term || haystack.includes(term);
+      card.style.display = matches ? '' : 'none';
+      if (matches) visibleCount += 1;
+    });
+
+    if (emptyState) {
+      emptyState.classList.toggle('hidden', visibleCount !== 0 || !term);
+    }
+  };
+
+  const showSuggestions = (query) => {
+    const term = normalize(query);
+    if (!term) {
+      suggestions.innerHTML = '';
+      suggestions.classList.add('hidden');
+      return;
+    }
+
+    const matches = cards
+      .map(card => ({
+        title: card.dataset.title || '',
+        url: card.dataset.url || ''
+      }))
+      .filter(item => normalize(item.title).includes(term))
+      .slice(0, 5);
+
+    if (matches.length === 0) {
+      suggestions.innerHTML = '<div class="px-3 py-2 text-sm text-muted-foreground">No matching articles</div>';
+    } else {
+      suggestions.innerHTML = matches.map(item => `
+        <a href="${item.url}" class="block px-3 py-2 text-sm hover:bg-muted focus:bg-muted focus:outline-none" role="option">
+          ${item.title}
+        </a>
+      `).join('');
+    }
+
+    suggestions.classList.remove('hidden');
+  };
+
+  const hideSuggestions = () => suggestions.classList.add('hidden');
+
+  if (searchInput) {
+    searchInput.value = initialQuery;
+    updateResults(initialQuery);
+    if (initialQuery) showSuggestions(initialQuery);
+
+    searchInput.addEventListener('input', (event) => {
+      updateResults(event.target.value);
+      showSuggestions(event.target.value);
+    });
+
+    searchInput.addEventListener('focus', () => {
+      if (searchInput.value.trim()) showSuggestions(searchInput.value);
+    });
+
+    searchInput.addEventListener('keydown', (event) => {
+      const links = suggestions.querySelectorAll('a');
+      if (!links.length) return;
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        const activeIndex = Array.from(links).findIndex(link => link === document.activeElement);
+        const nextIndex = activeIndex < links.length - 1 ? activeIndex + 1 : 0;
+        links[nextIndex].focus();
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        const activeIndex = Array.from(links).findIndex(link => link === document.activeElement);
+        const nextIndex = activeIndex > 0 ? activeIndex - 1 : links.length - 1;
+        links[nextIndex].focus();
+      }
+
+      if (event.key === 'Escape') {
+        hideSuggestions();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!searchInput.contains(event.target) && !suggestions.contains(event.target)) {
+        hideSuggestions();
+      }
+    });
+  }
+</script>
 
   </main>
 

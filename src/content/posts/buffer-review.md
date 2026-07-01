@@ -2,6 +2,7 @@
 title: "Buffer Review: Social Media Scheduling for Busy Solopreneurs"
 description: "Complete Buffer review for 2024. Schedule posts, analyze performance, and manage all your social media from one simple dashboard built for solo businesses."
 pubDate: 2024-03-01
+type: "Review"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=1200"

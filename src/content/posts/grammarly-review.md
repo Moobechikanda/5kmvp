@@ -2,6 +2,7 @@
 title: "Grammarly Review: AI Writing Assistant for Perfect Content"
 description: "Complete Grammarly review for 2024. From free browser extension to Premium AI writing assistant, see if Grammarly improves your professional writing."
 pubDate: 2024-02-15
+type: "Review"
 author: "admin"
 image:
   url: "https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=1200"
