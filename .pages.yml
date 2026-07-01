@@ -6,7 +6,7 @@ content:
   - name: posts
     label: Articles
     type: collection
-    path: content/posts
+    path: src/content/posts
     filename: "{primary}.md"
 
     view:
@@ -84,7 +84,7 @@ content:
   - name: pages
     label: Pages
     type: collection
-    path: content/pages
+    path: src/content/pages
     filename: "{primary}.md"
 
     fields:
@@ -100,7 +100,7 @@ content:
   - name: authors
     label: Authors
     type: collection
-    path: content/authors
+    path: src/content/authors
     filename: "{primary}.md"
 
     fields:
